@@ -1,9 +1,9 @@
 using lawyer.api.lawyers.application.DTO;
-using lawyer.api.lawyers.application.UseCases.Lawyer.Create;
-using lawyer.api.lawyers.application.UseCases.Lawyer.Delete;
-using lawyer.api.lawyers.application.UseCases.Lawyer.GetAll;
-using lawyer.api.lawyers.application.UseCases.Lawyer.GetById;
-using lawyer.api.lawyers.application.UseCases.Lawyer.Update;
+using lawyer.api.lawyers.application.UseCases.AcademicInfo.Create;
+using lawyer.api.lawyers.application.UseCases.AcademicInfo.Delete;
+using lawyer.api.lawyers.application.UseCases.AcademicInfo.GetAll;
+using lawyer.api.lawyers.application.UseCases.AcademicInfo.GetById;
+using lawyer.api.lawyers.application.UseCases.AcademicInfo.Update;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,58 +13,59 @@ namespace lawyer.api.lawyers.webapi.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
-public class LawyerController : ControllerBase
+public class AcademicInfoController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public LawyerController(IMediator mediator)
+    public AcademicInfoController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<LawyerDto>>> Get()
+    public async Task<ActionResult<List<AcademicInfoDto>>> Get()
     {
-        var lawyers = await _mediator.Send(new GetAllLawyersQuery());
-        return Ok(lawyers);
+        var infos = await _mediator.Send(new GetAllAcademicInfoQuery());
+        return Ok(infos);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<LawyerDto>> Get(Guid id)
+    public async Task<ActionResult<AcademicInfoDto>> Get(Guid id)
     {
-        var lawyer = await _mediator.Send(new GetByIdLawyerQuery(id));
-        return Ok(lawyer);
+        var info = await _mediator.Send(new GetByIdAcademicInfoQuery(id));
+        return Ok(info);
     }
-    
+
     [HttpPost]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
-    public async Task<ActionResult> Post([FromBody] CreateLawyerCommand command)
+    public async Task<ActionResult> Post([FromBody] CreateAcademicInfoCommand command)
     {
         var id = await _mediator.Send(command);
         var url = Url.Action(nameof(Get), new { id });
         return Created(url, id);
     }
-    
+
     [HttpPut]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
-    public async Task<ActionResult> Put([FromBody] UpdateLawyerCommand command)
+    public async Task<ActionResult> Put([FromBody] UpdateAcademicInfoCommand command)
     {
         if (command.Id == Guid.Empty)
             return BadRequest("The provided ID is not valid.");
-    
+
         var updatedId = await _mediator.Send(command);
         return Ok(updatedId);
     }
-    
+
     [HttpDelete("{id}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
     public async Task<ActionResult> Delete(Guid id)
     {
-        var command = new DeleteLawyerCommand { Id = id };
+        var command = new DeleteAcademicInfoCommand { Id = id };
         await _mediator.Send(command);
         return NoContent();
     }
 }
+

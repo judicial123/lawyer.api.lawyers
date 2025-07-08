@@ -2,7 +2,7 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.Lawyer.Update;
 
-public class UpdateLawyerCommand : IRequest<Unit>
+public class UpdateLawyerCommand : IRequest<Guid>
 {
     public Guid Id { get; set; }
     public Guid User { get; set; }
