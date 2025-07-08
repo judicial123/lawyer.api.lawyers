@@ -11,6 +11,7 @@ public class LawyersContext : DbContext
     }
 
     public DbSet<LawyerEntity> Layers { get; set; }
+    public DbSet<AcademicInfoEntity> AcademicInfos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

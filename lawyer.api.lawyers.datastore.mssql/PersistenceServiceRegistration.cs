@@ -1,8 +1,10 @@
 using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.Lawyer;
+using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.AcademicInfo;
 using lawyer.api.lawyers.datastore.mssql.DatabaseContext;
 using lawyer.api.lawyers.datastore.mssql.Model.MappingProfile;
 using lawyer.api.lawyers.datastore.mssql.Repositories.Lawyer;
 using lawyer.api.lawyers.datastore.mssql.Repositories.Laywer;
+using lawyer.api.lawyers.datastore.mssql.Repositories.AcademicInfo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +21,8 @@ public static class PersistenceServiceRegistration
         services.AddAutoMapper(typeof(ApplicationMappingProfile).Assembly);
         services.AddScoped<ILawyerCommandRepository, LawyerCommandRepository>();
         services.AddScoped<ILawyerQueryRepository, LawyerQueryRepository>();
+        services.AddScoped<IAcademicInfoCommandRepository, AcademicInfoCommandRepository>();
+        services.AddScoped<IAcademicInfoQueryRepository, AcademicInfoQueryRepository>();
 
         return services;
     }
