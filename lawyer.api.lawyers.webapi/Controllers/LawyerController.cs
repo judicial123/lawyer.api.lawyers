@@ -54,8 +54,8 @@ public class LawyerController : ControllerBase
         if (command.Id == Guid.Empty)
             return BadRequest("The provided ID is not valid.");
     
-        await _mediator.Send(command);
-        return NoContent();
+        var updatedId = await _mediator.Send(command);
+        return Ok(updatedId);
     }
     
     [HttpDelete("{id}")]

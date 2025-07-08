@@ -3,7 +3,7 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.AcademicInfo.Update;
 
-public class UpdateAcademicInfoCommandHandler : IRequestHandler<UpdateAcademicInfoCommand, Unit>
+public class UpdateAcademicInfoCommandHandler : IRequestHandler<UpdateAcademicInfoCommand, Guid>
 {
     private readonly IAcademicInfoCommandRepository _infoCommand;
     private readonly IAcademicInfoQueryRepository _infoQuery;
@@ -16,7 +16,7 @@ public class UpdateAcademicInfoCommandHandler : IRequestHandler<UpdateAcademicIn
         _infoQuery = infoQuery;
     }
 
-    public async Task<Unit> Handle(UpdateAcademicInfoCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdateAcademicInfoCommand request, CancellationToken cancellationToken)
     {
         var existingInfo = await _infoQuery.GetByIdAsync(request.Id);
         if (existingInfo == null) throw new KeyNotFoundException($"The academic info with ID {request.Id} does not exist.");
@@ -28,6 +28,6 @@ public class UpdateAcademicInfoCommandHandler : IRequestHandler<UpdateAcademicIn
 
         await _infoCommand.UpdateAsync(existingInfo);
 
-        return Unit.Value;
+        return existingInfo.Id;
     }
 }

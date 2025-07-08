@@ -3,7 +3,7 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.Lawyer.Update;
 
-public class UpdateLawyerCommandHandler : IRequestHandler<UpdateLawyerCommand, Unit>
+public class UpdateLawyerCommandHandler : IRequestHandler<UpdateLawyerCommand, Guid>
 {
     private readonly ILawyerCommandRepository _lawyerCommand;
     private readonly ILawyerQueryRepository _lawyerQuery;
@@ -16,7 +16,7 @@ public class UpdateLawyerCommandHandler : IRequestHandler<UpdateLawyerCommand, U
         _lawyerQuery = lawyerQuery;
     }
 
-    public async Task<Unit> Handle(UpdateLawyerCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdateLawyerCommand request, CancellationToken cancellationToken)
     {
         var existingLawyer = await _lawyerQuery.GetByIdAsync(request.Id);
         if (existingLawyer == null) throw new KeyNotFoundException($"The lawyer with ID {request.Id} does not exist.");
@@ -33,6 +33,6 @@ public class UpdateLawyerCommandHandler : IRequestHandler<UpdateLawyerCommand, U
 
         await _lawyerCommand.UpdateAsync(existingLawyer);
 
-        return Unit.Value;
+        return existingLawyer.Id;
     }
 }
