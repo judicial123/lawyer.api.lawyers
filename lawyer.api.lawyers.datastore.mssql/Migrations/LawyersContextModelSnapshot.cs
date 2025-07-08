@@ -106,6 +106,31 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.ToTable("AcademicInfo");
                 });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.ExampleEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PropertyOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PropertyTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Examples");
+                });
 #pragma warning restore 612, 618
         }
     }
