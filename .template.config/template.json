@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "${Author}",
+  "classifications": ["CleanArchitecture"],
+  "name": "Clean Architecture Solution",
+  "identity": "CleanArch.Template",
+  "shortName": "cleanarch",
+  "sourceName": "MyApp",
+  "symbols": {
+    "SolutionName": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "${SolutionName}",
+      "description": "Name of the generated solution"
+    },
+    "Author": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "${Author}",
+      "defaultValue": ""
+    },
+    "Company": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "${Company}",
+      "defaultValue": ""
+    }
+  }
+}
