@@ -1,0 +1,33 @@
+using ${SolutionName}.Infrastructure.Model;
+using ${SolutionName}.Infrastructure.Model.Common;
+using Microsoft.EntityFrameworkCore;
+
+namespace ${SolutionName}.Infrastructure.DatabaseContext;
+
+public class LawyersContext : DbContext
+{
+    public LawyersContext(DbContextOptions<LawyersContext> options) : base(options)
+    {
+    }
+
+    public DbSet<LawyerEntity> Layers { get; set; }
+    public DbSet<AcademicInfoEntity> AcademicInfos { get; set; }
+    public DbSet<ExampleEntity> Examples { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(LawyersContext).Assembly);
+        base.OnModelCreating(modelBuilder);
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries<EFEntity>()
+                     .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
+        {
+            entry.Entity.DateModified = DateTime.Now;
+            if (entry.State == EntityState.Added) entry.Entity.DateCreated = DateTime.Now;
+        }
+
+        return base.SaveChangesAsync(cancellationToken);
+    }}

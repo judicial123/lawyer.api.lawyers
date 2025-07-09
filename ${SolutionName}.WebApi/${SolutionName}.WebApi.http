@@ -1,0 +1,6 @@
+@${SolutionName}.webapi_HostAddress = http://localhost:5196
+
+GET {{${SolutionName}.webapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
