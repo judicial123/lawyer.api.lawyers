@@ -3,7 +3,7 @@ namespace lawyer.api.lawyers.application.DTO;
 public class LawFirmDto
 {
     public Guid Id { get; set; }
-    public int IdCity { get; set; }
+    public Guid IdCity { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;

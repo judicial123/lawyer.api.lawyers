@@ -4,7 +4,7 @@ namespace lawyer.api.lawyers.domain;
 
 public class LawFirm : BaseEntity
 {
-    public int IdCity { get; set; }
+    public Guid IdCity { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;

@@ -6,7 +6,8 @@ namespace lawyer.api.lawyers.datastore.mssql.Model;
 [Table("LawFirms")]
 public class LawFirmEntity : EFEntity
 {
-    public int IdCity { get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IdCity { get; set; }
     public string Name { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }

@@ -8,7 +8,6 @@ public class LawyerEntity : EFEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid User { get; set; }
-
     public Guid Studio { get; set; }
     public Guid City { get; set; }
     public string Name { get; set; }
