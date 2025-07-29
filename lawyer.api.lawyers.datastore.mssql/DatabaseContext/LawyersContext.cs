@@ -10,7 +10,7 @@ public class LawyersContext : DbContext
     {
     }
 
-    public DbSet<LawyerEntity> Layers { get; set; }
+    public DbSet<LawyerEntity> Lawyers { get; set; }
     public DbSet<AcademicInfoEntity> AcademicInfos { get; set; }
     public DbSet<ExampleEntity> Examples { get; set; }
 
