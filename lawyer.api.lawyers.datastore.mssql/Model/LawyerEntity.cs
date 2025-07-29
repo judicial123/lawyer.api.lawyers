@@ -6,7 +6,7 @@ namespace lawyer.api.lawyers.datastore.mssql.Model;
 [Table("Lawyers")]
 public class LawyerEntity : EFEntity
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid User { get; set; }
 
     public Guid Studio { get; set; }
