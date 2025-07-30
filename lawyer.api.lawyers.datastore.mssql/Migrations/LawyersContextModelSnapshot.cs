@@ -47,7 +47,7 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AcademicInfo");
+                    b.ToTable("AcademicInfo", "lawyer");
                 });
 
             modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.ExampleEntity", b =>
@@ -72,7 +72,7 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Examples");
+                    b.ToTable("Examples", "lawyer");
                 });
 
             modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawFirmEntity", b =>
@@ -126,7 +126,7 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LawFirms");
+                    b.ToTable("LawFirms", "lawyer");
                 });
 
             modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawyerEntity", b =>
@@ -156,6 +156,9 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("LawFirmId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -168,9 +171,6 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LawFirmId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -180,7 +180,20 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Lawyers");
+                    b.HasIndex("LawFirmId");
+
+                    b.ToTable("Lawyers", "lawyer");
+                });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawyerEntity", b =>
+                {
+                    b.HasOne("lawyer.api.lawyers.datastore.mssql.Model.LawFirmEntity", "LawFirm")
+                        .WithMany()
+                        .HasForeignKey("LawFirmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LawFirm");
                 });
 #pragma warning restore 612, 618
         }

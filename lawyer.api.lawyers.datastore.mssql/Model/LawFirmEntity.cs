@@ -3,7 +3,7 @@ using lawyer.api.lawyers.datastore.mssql.Model.Common;
 
 namespace lawyer.api.lawyers.datastore.mssql.Model;
 
-[Table("LawFirms")]
+[Table("LawFirms", Schema = "lawyer")]
 public class LawFirmEntity : EFEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
