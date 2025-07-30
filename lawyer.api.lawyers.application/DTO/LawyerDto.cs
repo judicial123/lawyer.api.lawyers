@@ -4,7 +4,7 @@ public class LawyerDto
 {
     public Guid Id { get; set; }
     public Guid User { get; set; }
-    public Guid Studio { get; set; }
+    public Guid LawFirmId { get; set; }
     public Guid City { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
