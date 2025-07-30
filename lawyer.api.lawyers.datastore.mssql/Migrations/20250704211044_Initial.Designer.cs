@@ -64,7 +64,7 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("Studio")
+                    b.Property<Guid>("LawFirmId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
