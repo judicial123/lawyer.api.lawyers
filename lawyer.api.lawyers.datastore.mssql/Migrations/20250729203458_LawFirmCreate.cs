@@ -34,7 +34,6 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                 {
                     table.PrimaryKey("PK_LawFirms", x => x.Id);
                 });
-            
         }
 
         /// <inheritdoc />
