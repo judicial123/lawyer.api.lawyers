@@ -11,7 +11,6 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-<<<<<<<< HEAD:lawyer.api.lawyers.datastore.mssql/Migrations/20250730145540_InitialMigration.cs
             migrationBuilder.EnsureSchema(
                 name: "lawyer");
 
@@ -31,8 +30,6 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                 {
                     table.PrimaryKey("PK_AcademicInfo", x => x.Id);
                 });
-========
->>>>>>>> b4a584d48ab81a721d872fa1567976c90ec92421:lawyer.api.lawyers.datastore.mssql/Migrations/20250729203458_LawFirmCreate.cs
 
             migrationBuilder.CreateTable(
                 name: "Examples",
@@ -73,7 +70,6 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                 {
                     table.PrimaryKey("PK_LawFirms", x => x.Id);
                 });
-<<<<<<<< HEAD:lawyer.api.lawyers.datastore.mssql/Migrations/20250730145540_InitialMigration.cs
 
             migrationBuilder.CreateTable(
                 name: "Lawyers",
@@ -111,8 +107,6 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                 schema: "lawyer",
                 table: "Lawyers",
                 column: "LawFirmId");
-========
->>>>>>>> b4a584d48ab81a721d872fa1567976c90ec92421:lawyer.api.lawyers.datastore.mssql/Migrations/20250729203458_LawFirmCreate.cs
         }
 
         /// <inheritdoc />
