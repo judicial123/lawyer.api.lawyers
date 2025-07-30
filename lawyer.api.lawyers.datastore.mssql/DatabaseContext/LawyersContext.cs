@@ -18,6 +18,12 @@ public class LawyersContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(LawyersContext).Assembly);
+
+        modelBuilder.Entity<LawyerEntity>()
+            .HasOne(l => l.LawFirm)
+            .WithMany()
+            .HasForeignKey(l => l.LawFirmId);
+
         base.OnModelCreating(modelBuilder);
     }
 
