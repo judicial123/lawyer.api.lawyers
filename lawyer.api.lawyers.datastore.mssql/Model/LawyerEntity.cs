@@ -17,7 +17,8 @@ public class LawyerEntity : EFEntity
     public string Address { get; set; }
     public string GoogleMapsAddress { get; set; }
     public string SocialMediaLinks { get; set; }
-    
+
     [ForeignKey(nameof(LawFirmId))]
     public LawFirmEntity? LawFirm { get; set; }
+    public ICollection<AcademicInfoEntity> AcademicInfos { get; set; } = new List<AcademicInfoEntity>();
 }

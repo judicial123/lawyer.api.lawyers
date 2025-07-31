@@ -50,6 +50,17 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                     b.ToTable("AcademicInfo", "lawyer");
                 });
 
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.AcademicInfoEntity", b =>
+                {
+                    b.HasOne("lawyer.api.lawyers.datastore.mssql.Model.LawyerEntity", "Lawyer")
+                        .WithMany("AcademicInfos")
+                        .HasForeignKey("LawyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lawyer");
+                });
+
             modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.ExampleEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -194,6 +205,7 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                         .IsRequired();
 
                     b.Navigation("LawFirm");
+                    b.Navigation("AcademicInfos");
                 });
 #pragma warning restore 612, 618
         }
