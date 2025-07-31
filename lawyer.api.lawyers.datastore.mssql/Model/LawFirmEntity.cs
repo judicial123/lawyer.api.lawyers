@@ -17,4 +17,6 @@ public class LawFirmEntity : EFEntity
     public string GoogleMapsAddress { get; set; }
     public string Biography { get; set; }
     public string SocialMediaLinks { get; set; }
+    
+    public ICollection<LawyerEntity> Lawyers { get; set; } = new List<LawyerEntity>();
 }
