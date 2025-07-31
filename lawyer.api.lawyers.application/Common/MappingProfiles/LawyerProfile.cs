@@ -11,6 +11,7 @@ public class LawyerProfile : Profile
     public LawyerProfile()
     {
         CreateMap<LawyerDto, Lawyer>().ReverseMap();
+        CreateMap<LawyerQueryDto, Lawyer>().ReverseMap();
         CreateMap<CreateLawyerCommand, Lawyer>().ReverseMap();
         CreateMap<UpdateLawyerCommand, Lawyer>().ReverseMap();
     }

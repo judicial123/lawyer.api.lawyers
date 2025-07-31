@@ -21,13 +21,18 @@ public class LawyersContext : DbContext
 
         modelBuilder.Entity<LawyerEntity>()
             .HasOne(l => l.LawFirm)
-            .WithMany()
+            .WithMany(f => f.Lawyers)
             .HasForeignKey(l => l.LawFirmId);
 
         modelBuilder.Entity<LawyerEntity>()
             .HasMany(l => l.AcademicInfos)
             .WithOne(ai => ai.Lawyer)
             .HasForeignKey(ai => ai.LawyerId);
+        
+        modelBuilder.Entity<LawFirmEntity>()
+            .HasMany(f => f.Lawyers)
+            .WithOne(l => l.LawFirm)
+            .HasForeignKey(l => l.LawFirmId);
 
         base.OnModelCreating(modelBuilder);
     }
