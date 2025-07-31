@@ -5,7 +5,7 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.LawFirm.GetById;
 
-public class GetByIdLawFirmQueryHandler : IRequestHandler<GetByIdLawFirmQuery, LawFirmDto>
+public class GetByIdLawFirmQueryHandler : IRequestHandler<GetByIdLawFirmQuery, LawFirmQueryDto>
 {
     private readonly IMapper _mapper;
     private readonly ILawFirmQueryRepository _query;
@@ -18,9 +18,9 @@ public class GetByIdLawFirmQueryHandler : IRequestHandler<GetByIdLawFirmQuery, L
         _query = query;
     }
 
-    public async Task<LawFirmDto> Handle(GetByIdLawFirmQuery request, CancellationToken cancellationToken)
+    public async Task<LawFirmQueryDto> Handle(GetByIdLawFirmQuery request, CancellationToken cancellationToken)
     {
-        var entity = await _query.GetByIdAsync(request.Id);
-        return _mapper.Map<LawFirmDto>(entity);
+        var entity = await _query.GetByIdAsync(request.Id, "Lawyers");
+        return _mapper.Map<LawFirmQueryDto>(entity);
     }
 }
