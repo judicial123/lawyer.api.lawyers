@@ -10,5 +10,8 @@ public class AcademicInfoEntity : EFEntity
     public Guid LawyerId { get; set; }
     public string Name { get; set; }
     public string Url { get; set; }
+    
+    [ForeignKey(nameof(LawyerId))]
+    public LawyerEntity? Lawyer { get; set; }
 }
 

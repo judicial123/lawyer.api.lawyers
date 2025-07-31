@@ -14,4 +14,5 @@ public class LawFirm : BaseEntity
     public string GoogleMapsAddress { get; set; } = string.Empty;
     public string Biography { get; set; } = string.Empty;
     public string SocialMediaLinks { get; set; } = string.Empty;
+    public List<Lawyer> Lawyers { get; set; } = new();
 }
