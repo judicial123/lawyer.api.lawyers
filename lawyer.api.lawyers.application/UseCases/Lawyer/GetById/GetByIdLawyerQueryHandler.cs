@@ -5,7 +5,7 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.Lawyer.GetById;
 
-public class GetByIdLawyerQueryHandler : IRequestHandler<GetByIdLawyerQuery, LawFirmQueryDto>
+public class GetByIdLawyerQueryHandler : IRequestHandler<GetByIdLawyerQuery, LawyerQueryDto>
 {
     private readonly IMapper _mapper;
     private readonly ILawyerQueryRepository _query;
@@ -18,10 +18,10 @@ public class GetByIdLawyerQueryHandler : IRequestHandler<GetByIdLawyerQuery, Law
         _query = query;
     }
 
-    public async Task<LawFirmQueryDto> Handle(GetByIdLawyerQuery request, CancellationToken cancellationToken)
+    public async Task<LawyerQueryDto> Handle(GetByIdLawyerQuery request, CancellationToken cancellationToken)
     {
         var lawyer = await _query.GetByIdAsync(request.Id, "AcademicInfos");
-        var data = _mapper.Map<LawFirmQueryDto>(lawyer);
+        var data = _mapper.Map<LawyerQueryDto>(lawyer);
         return data;
     }
 }
