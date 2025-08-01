@@ -3,6 +3,6 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.Lawyer.GetAll;
 
-public class GetAllLawyersQuery : IRequest<List<LawyerDto>>, IRequest<LawyerDto>
+public class GetAllLawyersQuery : IRequest<List<LawyerQueryDto>>, IRequest<LawyerQueryDto>
 {
 }

@@ -23,14 +23,14 @@ public class LawyerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<LawyerDto>>> Get()
+    public async Task<ActionResult<List<LawyerQueryDto>>> Get()
     {
         var lawyers = await _mediator.Send(new GetAllLawyersQuery());
         return Ok(lawyers);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<LawyerDto>> Get(Guid id)
+    public async Task<ActionResult<LawyerQueryDto>> Get(Guid id)
     {
         var lawyer = await _mediator.Send(new GetByIdLawyerQuery(id));
         return Ok(lawyer);

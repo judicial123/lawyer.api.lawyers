@@ -11,6 +11,7 @@ public class LawFirmProfile : Profile
     public LawFirmProfile()
     {
         CreateMap<LawFirmDto, LawFirm>().ReverseMap();
+        CreateMap<LawFirmQueryDto, LawFirm>().ReverseMap();
         CreateMap<CreateLawFirmCommand, LawFirm>().ReverseMap();
         CreateMap<UpdateLawFirmCommand, LawFirm>().ReverseMap();
     }

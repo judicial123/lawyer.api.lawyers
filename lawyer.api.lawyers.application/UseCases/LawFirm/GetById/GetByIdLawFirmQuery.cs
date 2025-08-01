@@ -3,7 +3,7 @@ using MediatR;
 
 namespace lawyer.api.lawyers.application.UseCases.LawFirm.GetById;
 
-public class GetByIdLawFirmQuery : IRequest<LawFirmDto>
+public class GetByIdLawFirmQuery : IRequest<LawFirmQueryDto>
 {
     public GetByIdLawFirmQuery(Guid id)
     {
