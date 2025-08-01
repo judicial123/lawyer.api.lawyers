@@ -2,6 +2,7 @@ using lawyer.api.lawyers.application.DTO;
 using lawyer.api.lawyers.application.UseCases.LawFirm.Create;
 using lawyer.api.lawyers.application.UseCases.LawFirm.Delete;
 using lawyer.api.lawyers.application.UseCases.LawFirm.GetAll;
+using lawyer.api.lawyers.application.UseCases.LawFirm.GetAllBasic;
 using lawyer.api.lawyers.application.UseCases.LawFirm.GetById;
 using lawyer.api.lawyers.application.UseCases.LawFirm.Update;
 using MediatR;
@@ -20,6 +21,13 @@ public class LawFirmController : ControllerBase
     public LawFirmController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+    
+    [HttpGet("basic")]
+    public async Task<ActionResult<LawFirmDto>> GetBasic()
+    {
+        var entity = await _mediator.Send(new GetAllBasicLawFirmsQuery());
+        return Ok(entity);
     }
 
     [HttpGet]
