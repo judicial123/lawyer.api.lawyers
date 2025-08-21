@@ -140,6 +140,93 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
                     b.ToTable("LawFirms", "lawyer");
                 });
 
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.CommentEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdLawFirm")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdLawFirm");
+
+                    b.ToTable("Comments", "lawyer");
+                });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.PracticeAreaEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CommonName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdCountry")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("TechnicalName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PracticeAreas", "lawyer");
+                });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawFirmPracticeAreaEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdLawFirm")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdPracticeArea")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdLawFirm");
+
+                    b.HasIndex("IdPracticeArea");
+
+                    b.ToTable("LawFirmPracticeAreas", "lawyer");
+                });
+
             modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawyerEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -195,6 +282,34 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.ToTable("Lawyers", "lawyer");
                 });
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawFirmPracticeAreaEntity", b =>
+                {
+                    b.HasOne("lawyer.api.lawyers.datastore.mssql.Model.LawFirmEntity", "LawFirm")
+                        .WithMany("LawFirmPracticeAreas")
+                        .HasForeignKey("IdLawFirm")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lawyer.api.lawyers.datastore.mssql.Model.PracticeAreaEntity", "PracticeArea")
+                        .WithMany("LawFirmPracticeAreas")
+                        .HasForeignKey("IdPracticeArea")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LawFirm");
+                    b.Navigation("PracticeArea");
+                });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.CommentEntity", b =>
+                {
+                    b.HasOne("lawyer.api.lawyers.datastore.mssql.Model.LawFirmEntity", "LawFirm")
+                        .WithMany("Comments")
+                        .HasForeignKey("IdLawFirm")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LawFirm");
+                });
 
             modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawyerEntity", b =>
                 {
@@ -206,6 +321,18 @@ namespace lawyer.api.lawyers.datastore.mssql.Migrations
 
                     b.Navigation("LawFirm");
                     b.Navigation("AcademicInfos");
+                });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.LawFirmEntity", b =>
+                {
+                    b.Navigation("Comments");
+                    b.Navigation("Lawyers");
+                    b.Navigation("LawFirmPracticeAreas");
+                });
+
+            modelBuilder.Entity("lawyer.api.lawyers.datastore.mssql.Model.PracticeAreaEntity", b =>
+                {
+                    b.Navigation("LawFirmPracticeAreas");
                 });
 #pragma warning restore 612, 618
         }
