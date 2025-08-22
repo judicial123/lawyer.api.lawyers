@@ -9,7 +9,7 @@ public class CommentEntity : EFEntity
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IdUser { get; set; }
     public Guid IdLawFirm { get; set; }
-    public string Comment { get; set; }
+    public string CommentMessage { get; set; }
     public int Stars { get; set; }
 
     [ForeignKey(nameof(IdLawFirm))]

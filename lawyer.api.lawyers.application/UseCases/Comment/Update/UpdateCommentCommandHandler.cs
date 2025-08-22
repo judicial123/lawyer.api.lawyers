@@ -21,7 +21,7 @@ public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand,
 
         entity.IdUser = request.IdUser;
         entity.IdLawFirm = request.IdLawFirm;
-        entity.Comment = request.Comment;
+        entity.CommentMessage = request.CommentMessage;
         entity.Stars = request.Stars;
         entity.DateModified = DateTime.UtcNow;
 
