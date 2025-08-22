@@ -19,4 +19,6 @@ public class LawFirmEntity : EFEntity
     public string SocialMediaLinks { get; set; }
     
     public ICollection<LawyerEntity> Lawyers { get; set; } = new List<LawyerEntity>();
+    public ICollection<CommentEntity> Comments { get; set; } = new List<CommentEntity>();
+    public ICollection<LawFirmPracticeAreaEntity> LawFirmPracticeAreas { get; set; } = new List<LawFirmPracticeAreaEntity>();
 }

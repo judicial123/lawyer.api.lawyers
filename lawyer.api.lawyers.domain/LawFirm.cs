@@ -15,4 +15,6 @@ public class LawFirm : BaseEntity
     public string Biography { get; set; } = string.Empty;
     public string SocialMediaLinks { get; set; } = string.Empty;
     public List<Lawyer> Lawyers { get; set; } = new();
+    public List<Comment> Comments { get; set; } = new();
+    public List<LawFirmPracticeArea> LawFirmPracticeAreas { get; set; } = new();
 }

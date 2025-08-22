@@ -14,6 +14,9 @@ public class LawyersContext : DbContext
     public DbSet<AcademicInfoEntity> AcademicInfos { get; set; }
     public DbSet<ExampleEntity> Examples { get; set; }
     public DbSet<LawFirmEntity> LawFirms { get; set; }
+    public DbSet<CommentEntity> Comments { get; set; }
+    public DbSet<PracticeAreaEntity> PracticeAreas { get; set; }
+    public DbSet<LawFirmPracticeAreaEntity> LawFirmPracticeAreas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,6 +37,21 @@ public class LawyersContext : DbContext
             .WithOne(l => l.LawFirm)
             .HasForeignKey(l => l.LawFirmId);
 
+        modelBuilder.Entity<CommentEntity>()
+            .HasOne(c => c.LawFirm)
+            .WithMany(f => f.Comments)
+            .HasForeignKey(c => c.IdLawFirm);
+
+        modelBuilder.Entity<LawFirmPracticeAreaEntity>()
+            .HasOne(lpa => lpa.LawFirm)
+            .WithMany(lf => lf.LawFirmPracticeAreas)
+            .HasForeignKey(lpa => lpa.IdLawFirm);
+
+        modelBuilder.Entity<LawFirmPracticeAreaEntity>()
+            .HasOne(lpa => lpa.PracticeArea)
+            .WithMany(pa => pa.LawFirmPracticeAreas)
+            .HasForeignKey(lpa => lpa.IdPracticeArea);
+
         base.OnModelCreating(modelBuilder);
     }
 
@@ -47,4 +65,5 @@ public class LawyersContext : DbContext
         }
 
         return base.SaveChangesAsync(cancellationToken);
-    }}
+    }
+}

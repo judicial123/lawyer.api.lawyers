@@ -2,6 +2,9 @@ using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.Lawyer;
 using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.AcademicInfo;
 using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.Example;
 using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.LawFirm;
+using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.Comment;
+using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.PracticeArea;
+using lawyer.api.lawyers.application.Contracts.Interfaces.Persistence.LawFirmPracticeArea;
 using lawyer.api.lawyers.datastore.mssql.DatabaseContext;
 using lawyer.api.lawyers.datastore.mssql.Model.MappingProfile;
 using lawyer.api.lawyers.datastore.mssql.Repositories.Lawyer;
@@ -9,6 +12,9 @@ using lawyer.api.lawyers.datastore.mssql.Repositories.Laywer;
 using lawyer.api.lawyers.datastore.mssql.Repositories.AcademicInfo;
 using lawyer.api.lawyers.datastore.mssql.Repositories.Example;
 using lawyer.api.lawyers.datastore.mssql.Repositories.LawFirm;
+using lawyer.api.lawyers.datastore.mssql.Repositories.Comment;
+using lawyer.api.lawyers.datastore.mssql.Repositories.PracticeArea;
+using lawyer.api.lawyers.datastore.mssql.Repositories.LawFirmPracticeArea;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +37,13 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IExampleQueryRepository, ExampleQueryRepository>();
         services.AddScoped<ILawFirmCommandRepository, LawFirmCommandRepository>();
         services.AddScoped<ILawFirmQueryRepository, LawFirmQueryRepository>();
+        services.AddScoped<ICommentCommandRepository, CommentCommandRepository>();
+        services.AddScoped<ICommentQueryRepository, CommentQueryRepository>();
+        services.AddScoped<IPracticeAreaCommandRepository, PracticeAreaCommandRepository>();
+        services.AddScoped<IPracticeAreaQueryRepository, PracticeAreaQueryRepository>();
+        services.AddScoped<ILawFirmPracticeAreaCommandRepository, LawFirmPracticeAreaCommandRepository>();
+        services.AddScoped<ILawFirmPracticeAreaQueryRepository, LawFirmPracticeAreaQueryRepository>();
 
         return services;
-    }}
+    }
+}

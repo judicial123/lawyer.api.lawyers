@@ -12,5 +12,8 @@ public class ApplicationMappingProfile : Profile
         CreateMap<AcademicInfo, AcademicInfoEntity>().ReverseMap();
         CreateMap<Example, ExampleEntity>().ReverseMap();
         CreateMap<LawFirm, LawFirmEntity>().ReverseMap();
+        CreateMap<Comment, CommentEntity>().ReverseMap();
+        CreateMap<PracticeArea, PracticeAreaEntity>().ReverseMap();
+        CreateMap<LawFirmPracticeArea, LawFirmPracticeAreaEntity>().ReverseMap();
     }
 }
